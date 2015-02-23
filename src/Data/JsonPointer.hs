@@ -22,7 +22,7 @@ data PointerErr
   | UnindexableValue
   deriving (Eq, Show)
 
--- The Text to build a JSON Pointer must either be empty or start
+-- | The Text to build a JSON Pointer must either be empty or start
 -- with a '/'. If you're turning a URI Fragment into a JSON Pointer
 -- you must drop the initial '#'.
 jsonPointer :: Text -> Either PointerErr JsonPointer

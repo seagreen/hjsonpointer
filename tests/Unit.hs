@@ -1,5 +1,7 @@
 module Main where
 
+import           Control.Applicative
+import           Control.Arrow
 import           Control.Monad
 import           Data.Aeson
 import qualified Data.HashMap.Strict            as H
@@ -38,11 +40,18 @@ specExample =
     , ("m~n" , Number 8)
     ]
 
+resolvesTo :: (Text, Value) -> Assertion
+resolvesTo (t, expected) =
+  case jsonPointer t of
+    Left e  -> assertFailure (show e <> " error for pointer: " <> show t)
+    Right p ->
+      assertEqual ("Resolved value for pointer: " <> show t)
+        (Right expected)
+        $ resolvePointer p specExample
+
 jsonString :: Assertion
 jsonString =
-  void $ mapM
-    (\(a,expected) -> assertEqual ("Tried to resolve " <> show a) (Right expected)
-     $ jsonPointer a >>= resolvePointer specExample)
+  void $ mapM resolvesTo
     [ (""      , specExample)
     , ("/foo"  , Array $ V.fromList ["bar", "baz"])
     , ("/foo/0", String "bar")
@@ -59,9 +68,7 @@ jsonString =
 
 uriFragment :: Assertion
 uriFragment =
-  void $ mapM
-    (\(a,expected) -> assertEqual ("Tried to resolve " <> show a) (Right expected)
-     $ jsonPointer (decodeFragment a) >>= resolvePointer specExample)
+  void $ mapM resolvesTo $ first decodeFragment <$>
     [ ("#"      , specExample)
     , ("#/foo"  , Array $ V.fromList ["bar", "baz"])
     , ("#/foo/0", String "bar")

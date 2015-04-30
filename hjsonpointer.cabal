@@ -1,5 +1,5 @@
 name:                   hjsonpointer
-version:                0.2.0.1
+version:                0.2.0.2
 synopsis:               JSON Pointer library
 homepage:               https://github.com/seagreen/hjsonpointer
 license:                MIT

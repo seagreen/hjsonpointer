@@ -1,12 +1,3 @@
-# Summary
-
-[JSON Pointer](http://tools.ietf.org/html/rfc6901) library for Haskell.
-
-[Hackage](https://hackage.haskell.org/package/hjsonpointer) / [GitHub](https://github.com/seagreen/hjsonpointer) / [Travis CI](https://travis-ci.org/seagreen/hjsonpointer)
-
-# Example
-
-```haskell
 {-# LANGUAGE OverloadedStrings #-}
 
 module Main where
@@ -20,7 +11,7 @@ main = do
   -- JSON Pointers must either be empty or start with a /.
   pntr1 <- case P.unescape "/foo/0" of
              Left _     -> error "Failed to construct JSON Pointer."
-             Right pntr -> pure pntr
+             Right pntr -> return pntr
 
   -- We can also write JSON Pointers in Haskell.
   let pntr2 = P.Pointer [P.Token "/"]
@@ -37,10 +28,3 @@ main = do
     document = object [ "foo" .= [String "bar", String "baz"]
                       , "/"   .= String "quux"
                       ]
-```
-
-Output:
-```
-Right (String "bar")
-Right (String "quux")
-```

@@ -9,9 +9,10 @@ import qualified Data.Text                            as T
 import           Data.Text.Encoding
 import qualified Data.Vector                          as V
 import           Network.HTTP.Types.URI               (urlDecode)
-import           Test.Framework                       (defaultMain, testGroup)
-import           Test.Framework.Providers.HUnit       (testCase)
-import           Test.Framework.Providers.QuickCheck2 (testProperty)
+
+import           Test.Hspec
+import           Test.QuickCheck                      (property)
+
 import           Test.HUnit                           hiding (Test)
 
 -- For GHCs before 7.10:
@@ -19,14 +20,16 @@ import           Control.Applicative
 import           Data.Foldable
 import           Data.Monoid
 
+import qualified Example
+
 main :: IO ()
-main = defaultMain
-  [ testGroup "unit"
-    [ testProperty "Storing a Pointer as JSON doesn't change its value" roundtrip
-    , testCase "Can be represented in a JSON string value" jsonString
-    , testCase "Can be represented in a URI fragment identifier" uriFragment
-    ]
-  ]
+main = hspec $ do
+  describe "example" $ do
+    it "compiles and runs without errors" Example.main
+  describe "pointers" $ do
+    it "can be stored as JSON without changing its value" (property roundtrip)
+    it "can be represented in a JSON string value" jsonString
+    it "can be represented in a URI fragment identifier" uriFragment
 
 roundtrip :: P.Pointer -> Bool
 roundtrip a = Just a == decode (encode a)

@@ -1,4 +1,12 @@
-# 0.3
+# 0.3.0.2
+
++ Switch to hspec for tests.
+
+# 0.3.0.1
+
++ Enable GHC 8.
+
+# 0.3.0.0
 
 + Rewrite.
 

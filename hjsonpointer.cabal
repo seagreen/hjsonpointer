@@ -1,5 +1,5 @@
 name:                   hjsonpointer
-version:                0.3.0.1
+version:                0.3.0.2
 synopsis:               JSON Pointer library
 homepage:               https://github.com/seagreen/hjsonpointer
 license:                MIT
@@ -22,37 +22,30 @@ library
   ghc-options:          -Wall
   build-depends:        aeson                >= 0.7  && < 0.12
                       , base                 >= 4.6  && < 4.10
-                      , QuickCheck           >= 2.8  && < 2.9
+                      , QuickCheck           >= 2.8  && < 2.10
                       , unordered-containers >= 0.2  && < 0.3
                       , text                 >= 1.2  && < 1.3
                       , vector               >= 0.10 && < 0.12
 
 test-suite unit
   type:                 exitcode-stdio-1.0
-  hs-source-dirs:       tests
+  hs-source-dirs:       test
+                        ./
   main-is:              Unit.hs
+  other-modules:        Example
   default-language:     Haskell2010
   ghc-options:          -Wall
   default-extensions:   OverloadedStrings
   build-depends:        aeson
                       , base
                       , hjsonpointer
+                      , QuickCheck
                       , unordered-containers
                       , text
                       , vector
-                      , http-types                 >= 0.8 && < 0.10
-                      , HUnit                      >= 1.2 && < 1.4
-                      , test-framework             >= 0.8 && < 0.9
-                      , test-framework-hunit       >= 0.3 && < 0.4
-                      , test-framework-quickcheck2 >= 0.3 && < 0.4
-
-executable example
-  main-is:              Example.hs
-  default-language:     Haskell2010
-  ghc-options:          -Wall
-  build-depends:        aeson
-                      , base
-                      , hjsonpointer
+                      , hspec                >= 2.2 && < 2.3
+                      , http-types           >= 0.8 && < 0.10
+                      , HUnit                >= 1.2 && < 1.4
 
 source-repository head
   type:               git

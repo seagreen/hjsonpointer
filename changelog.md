@@ -1,3 +1,7 @@
+# 1.0.0.0
+
++ Bump aeson.
+
 # 0.3.0.2
 
 + Switch to hspec for tests.

@@ -1,3 +1,7 @@
+# 1.0.0.1
+
++ Remove HUnit dep.
+
 # 1.0.0.0
 
 + Bump aeson.

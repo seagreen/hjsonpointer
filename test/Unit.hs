@@ -3,17 +3,15 @@ module Main where
 
 import           Control.Arrow
 import           Data.Aeson
-import qualified Data.Aeson.Pointer                   as P
-import           Data.Text                            (Text)
-import qualified Data.Text                            as T
+import qualified Data.Aeson.Pointer      as P
+import           Data.Text               (Text)
+import qualified Data.Text               as T
 import           Data.Text.Encoding
-import qualified Data.Vector                          as V
-import           Network.HTTP.Types.URI               (urlDecode)
+import qualified Data.Vector             as V
+import           Network.HTTP.Types.URI  (urlDecode)
 
 import           Test.Hspec
-import           Test.QuickCheck                      (property)
-
-import           Test.HUnit                           hiding (Test)
+import           Test.QuickCheck         (property)
 
 -- For GHCs before 7.10:
 import           Control.Applicative
@@ -34,7 +32,7 @@ main = hspec $ do
 roundtrip :: P.Pointer -> Bool
 roundtrip a = Just a == decode (encode a)
 
-jsonString :: Assertion
+jsonString :: Expectation
 jsonString = traverse_ resolvesTo
     [ (""      , specExample)
     , ("/foo"  , Array $ V.fromList ["bar", "baz"])
@@ -50,7 +48,7 @@ jsonString = traverse_ resolvesTo
     , ("/m~0n" , Number 8)
     ]
 
-uriFragment :: Assertion
+uriFragment :: Expectation
 uriFragment = traverse_ resolvesTo . fmap (first decodeFragment) $
     [ ("#"      , specExample)
     , ("#/foo"  , Array $ V.fromList ["bar", "baz"])
@@ -69,14 +67,11 @@ uriFragment = traverse_ resolvesTo . fmap (first decodeFragment) $
     decodeFragment :: Text -> Text
     decodeFragment = T.drop 1 . decodeUtf8 . urlDecode True . encodeUtf8
 
-resolvesTo :: (Text, Value) -> Assertion
+resolvesTo :: (Text, Value) -> Expectation
 resolvesTo (t, expected) =
     case P.unescape t of
-        Left e  -> assertFailure (show e <> " error for pointer: " <> show t)
-        Right p -> assertEqual
-                       ("Resolved value for pointer: " <> show t)
-                       (Right expected)
-                       (P.resolve p specExample)
+        Left e  -> expectationFailure (show e <> " error for pointer: " <> show t)
+        Right p -> P.resolve p specExample `shouldBe` Right expected
 
 specExample :: Value
 specExample = object

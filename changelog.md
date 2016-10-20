@@ -1,3 +1,7 @@
+# 1.0.0.2
+
++ Bump hspec.
+
 # 1.0.0.1
 
 + Remove HUnit dep.

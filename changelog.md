@@ -1,3 +1,10 @@
+# 1.1.0.0
+
++ Rename the module to `JSONPointer`.
++ Bump aeson.
++ Derive `Semigroup` for `Pointer`.
++ Reorganize code.
+
 # 1.0.0.2
 
 + Bump hspec.

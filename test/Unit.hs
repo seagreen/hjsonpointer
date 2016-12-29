@@ -3,15 +3,15 @@ module Main where
 
 import           Control.Arrow
 import           Data.Aeson
-import qualified Data.Aeson.Pointer      as P
-import           Data.Text               (Text)
-import qualified Data.Text               as T
+import           Data.Text              (Text)
+import qualified Data.Text              as T
 import           Data.Text.Encoding
-import qualified Data.Vector             as V
-import           Network.HTTP.Types.URI  (urlDecode)
+import qualified Data.Vector            as V
+import qualified JSONPointer            as JP
+import           Network.HTTP.Types.URI (urlDecode)
 
 import           Test.Hspec
-import           Test.QuickCheck         (property)
+import           Test.QuickCheck        (property)
 
 -- For GHCs before 7.10:
 import           Control.Applicative
@@ -29,7 +29,7 @@ main = hspec $ do
         it "can be represented in a JSON string value" jsonString
         it "can be represented in a URI fragment identifier" uriFragment
 
-roundtrip :: P.Pointer -> Bool
+roundtrip :: JP.Pointer -> Bool
 roundtrip a = Just a == decode (encode a)
 
 jsonString :: Expectation
@@ -69,9 +69,9 @@ uriFragment = traverse_ resolvesTo . fmap (first decodeFragment) $
 
 resolvesTo :: (Text, Value) -> Expectation
 resolvesTo (t, expected) =
-    case P.unescape t of
+    case JP.unescape t of
         Left e  -> expectationFailure (show e <> " error for pointer: " <> show t)
-        Right p -> P.resolve p specExample `shouldBe` Right expected
+        Right p -> JP.resolve p specExample `shouldBe` Right expected
 
 specExample :: Value
 specExample = object

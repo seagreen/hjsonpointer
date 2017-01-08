@@ -1,3 +1,7 @@
+# 1.1.0.1
+
++ Bump `vector`.
+
 # 1.1.0.0
 
 + Rename the module to `JSONPointer`.

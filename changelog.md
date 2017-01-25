@@ -1,3 +1,7 @@
+# 1.1.0.2
+
++ Raise test dep upper bounds.
+
 # 1.1.0.1
 
 + Bump `vector`.

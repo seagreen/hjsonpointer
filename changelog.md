@@ -1,3 +1,7 @@
+# 1.1.1
+
++ Bump aeson.
+
 # 1.1.0.2
 
 + Raise test dep upper bounds.

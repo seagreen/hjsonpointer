@@ -1,5 +1,5 @@
 name:               hjsonpointer
-version:            1.1.0.2
+version:            1.1.1
 synopsis:           JSON Pointer library
 homepage:           https://github.com/seagreen/hjsonpointer
 license:            MIT
@@ -23,7 +23,7 @@ library
     JSONPointer
   build-depends:
       base                 >= 4.6  && < 4.10
-    , aeson                >= 0.7  && < 1.2
+    , aeson                >= 0.7  && < 1.3
     , hashable             >= 1.2  && < 1.3
     , QuickCheck           >= 2.8  && < 2.10
     , unordered-containers >= 0.2  && < 0.3

@@ -1,0 +1,7 @@
+resolver: lts-8.20
+extra-deps:
+  - QuickCheck-2.10.0.1
+pvp-bounds: upper-revision
+nix:
+  enable: true
+  shell-file: shell.nix

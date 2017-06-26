@@ -1,3 +1,7 @@
+# 1.2.0
+
++ Track upper bounds in a Hackage revision instead of source code.
+
 # 1.1.1
 
 + Bump aeson.

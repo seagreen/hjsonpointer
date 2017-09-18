@@ -1,3 +1,7 @@
+# 1.3.0
+
++ Test with GHC 8.2. Drop GHC 7.8.
+
 # 1.2.0
 
 + Track upper bounds in a Hackage revision instead of source code.

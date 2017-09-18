@@ -1,22 +1,19 @@
 
 module Main where
 
-import           Control.Arrow
 import           Data.Aeson
+import           Data.Bifunctor         (first)
+import           Data.Foldable
+import           Data.Monoid
 import           Data.Text              (Text)
 import qualified Data.Text              as T
-import           Data.Text.Encoding
+import           Data.Text.Encoding     (decodeUtf8, encodeUtf8)
 import qualified Data.Vector            as V
 import qualified JSONPointer            as JP
 import           Network.HTTP.Types.URI (urlDecode)
 
 import           Test.Hspec
 import           Test.QuickCheck        (property)
-
--- For GHCs before 7.10:
-import           Control.Applicative
-import           Data.Foldable
-import           Data.Monoid
 
 import qualified Example
 

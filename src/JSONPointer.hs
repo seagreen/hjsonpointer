@@ -16,11 +16,6 @@ import           GHC.Generics        (Generic)
 import           Test.QuickCheck
 import           Text.Read           (readMaybe)
 
--- For GHCs before 7.10:
-import           Control.Applicative
-import           Data.Monoid
-import           Data.Traversable
-
 --------------------------------------------------
 -- * Resolution
 --------------------------------------------------
@@ -112,7 +107,7 @@ unescape txt =
 --------------------------------------------------
 -- * Wrapper Types
 --
--- These aren't used by the rest of the library
+-- $ These aren't used by the rest of the library
 -- (as explained in the docs for 'Token').
 --
 -- However, they might be useful if you need to distinguish JSON Pointer

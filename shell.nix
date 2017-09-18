@@ -1,3 +1,4 @@
+{ghc}:
 with (import <nixpkgs> {});
 
 haskell.lib.buildStackProject {

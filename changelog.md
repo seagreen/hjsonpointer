@@ -1,3 +1,8 @@
+# 1.4.0
+
++ Enable GHC 8.4 (thanks @4e6 !).
++ Drop GHC 7.10.
+
 # 1.3.0
 
 + Test with GHC 8.2. Drop GHC 7.8.

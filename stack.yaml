@@ -1,2 +1,2 @@
-resolver: nightly-2017-09-18
+resolver: lts-11.6
 pvp-bounds: upper-revision

@@ -1,3 +1,7 @@
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE StandaloneDeriving #-}
+
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 
 module Main where
 
@@ -13,9 +17,14 @@ import qualified JSONPointer            as JP
 import           Network.HTTP.Types.URI (urlDecode)
 
 import           Test.Hspec
-import           Test.QuickCheck        (property)
+import           Test.QuickCheck        (Arbitrary(..), property)
 
 import qualified Example
+
+deriving instance Arbitrary JP.Pointer
+
+instance Arbitrary JP.Token where
+    arbitrary = JP.Token . T.pack <$> arbitrary
 
 main :: IO ()
 main = hspec $ do

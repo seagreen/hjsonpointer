@@ -27,7 +27,6 @@ library
       base                 >= 4.6 && < 5
     , aeson                >= 0.7
     , hashable             >= 1.2
-    , QuickCheck           >= 2.8
     , unordered-containers >= 0.2
     , text                 >= 1.2
     , vector               >= 0.10

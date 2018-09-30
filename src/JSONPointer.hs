@@ -13,7 +13,6 @@ import           Data.Text           (Text)
 import qualified Data.Text           as T
 import qualified Data.Vector         as V
 import           GHC.Generics        (Generic)
-import           Test.QuickCheck
 import           Text.Read           (readMaybe)
 
 --------------------------------------------------
@@ -37,7 +36,7 @@ resolve (Pointer (t:ts)) v = resolveToken t v >>= resolve (Pointer ts)
 
 newtype Pointer
     = Pointer { _unPointer :: [Token] }
-    deriving (Eq, Show, Semigroup, Monoid, Generic, Arbitrary)
+    deriving (Eq, Show, Semigroup, Monoid, Generic)
 
 instance HA.Hashable Pointer
 
@@ -62,9 +61,6 @@ newtype Token
     deriving (Eq, Show, Generic)
 
 instance HA.Hashable Token
-
-instance Arbitrary Token where
-    arbitrary = Token . T.pack <$> arbitrary
 
 -- | This escapes @"/"@ (because it's the token separator character).
 --

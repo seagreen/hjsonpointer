@@ -24,7 +24,7 @@ library
   exposed-modules:
     JSONPointer
   build-depends:
-      base                 >= 4.6 && < 5
+      base                 >= 4.9 && < 5
     , aeson                >= 0.7
     , hashable             >= 1.2
     , unordered-containers >= 0.2

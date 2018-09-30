@@ -1,8 +1,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# LANGUAGE StandaloneDeriving #-}
 
-{-# OPTIONS_GHC -fno-warn-orphans #-}
-
 module Main where
 
 import           Data.Aeson

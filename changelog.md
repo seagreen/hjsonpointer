@@ -1,3 +1,7 @@
+# 1.5.0
+
++ Drop QuickCheck dependency (thanks @mmhat !).
+
 # 1.4.0
 
 + Enable GHC 8.4 (thanks @4e6 !).
